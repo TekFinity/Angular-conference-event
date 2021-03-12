@@ -1,0 +1,17 @@
+nav{
+    color: black;
+    background-color:rgba(255,255,255, 0.4);
+    
+}
+.navbar-default .navbar-nav>li>a {
+    color: #333;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: #777;
+}
+.navbar-default .navbar-header .navbar-brand{
+    color: #333;
+}
+.navbar-header .navbar-right .nav .navbar-nav>li>a{
+    color: #333;
+}
