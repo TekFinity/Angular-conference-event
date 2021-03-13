@@ -21,11 +21,11 @@ import { Component, Input } from '@angular/core';
         Online Url: {{event1.onlineUrl}}
     </div>
 </div>`,
-styles:[`.hoverwell{background-color:rgba(255,255,255, 0.6)}
+styles:[`.well{background-color:rgba(255,255,255, 0.6)}
 .well{
     height:200px;
 }
-.hoverwell:hover {
+.well:hover {
     background-color:rgba(255,255,255, 0.8);
     cursor: pointer;
   }`]
