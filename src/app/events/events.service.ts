@@ -1,12 +1,15 @@
 import {Injectable} from '@angular/core';
+import { Subject } from 'rxjs';
 @Injectable()
 export class EventService{
 
     getEvents(){
-        return EVENTS;
+      const subject = new Subject();
+      setTimeout(() => {subject.next(EVENTS); subject.complete();}, 2000);
+      return subject;
     }
-    getEventById(id:number){
-      return EVENTS.find(val=>val.id===id);
+    getEventById(id: number){
+      return EVENTS.find(val => val.id === id);
     }
 }
 const EVENTS = [
@@ -95,7 +98,7 @@ const EVENTS = [
       time: '9:00 am',
       price: 950.00,
       imageUrl: '/assets/images/ng-nl.png',
-     onlineUrl:'https://ng-nl.org',
+     onlineUrl: 'https://ng-nl.org',
       sessions: [
         {
           id: 1,
