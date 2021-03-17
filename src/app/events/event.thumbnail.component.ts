@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IEvent } from './shared/event.model';
 
 @Component({
     selector:'event-thumbnail',
@@ -32,5 +33,5 @@ styles:[`.well{background-color:rgba(255,255,255, 0.6)}
 })
 
 export class EventThumbnailComponent{
-@Input() event1:any;
+@Input() event1:IEvent;
 }
