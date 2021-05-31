@@ -1,0 +1,47 @@
+<div class="col-md-12">
+    <h3>Create Session</h3>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="sessionForm" (ngSubmit)="SaveSession(sessionForm.value)" autocomplete="off" novalidate>
+      <div class="form-group" >
+        <label for="sessionName">Session Name:</label>
+        <em *ngIf="sessionForm.controls.name.errors?.required && sessionForm.controls.name.touched">Required</em>
+        <input id="sessionName" type="text" formControlName="name" class="form-control" placeholder="session name..." />
+      </div>
+      <div class="form-group" >
+        <label for="eventDate">Presenter:</label>
+        <em *ngIf="sessionForm.controls.presenter.errors?.required  && sessionForm.controls.presenter.touched">Required</em>
+        <input id="presenter" type="text" class="form-control" formControlName="presenter" placeholder="presenter..." />
+      </div>
+      <div class="form-group" >
+        <label for="duration">Duration:</label>
+        <em *ngIf="sessionForm.controls.duration.errors?.required && sessionForm.controls.duration.touched">Required</em>
+        <select class="form-control" formControlName = "duration">
+          <option value="">select duration...</option>
+          <option value="1">Half Hour</option>
+          <option value="2">1 Hour</option>
+          <option value="3">Half Day</option>
+          <option value="4">Full Day</option>
+        </select>
+      </div>
+      <div class="form-group" >
+        <label for="level">Level:</label>
+        <em *ngIf="sessionForm.controls.level.errors?.required && sessionForm.controls.level.touched">Required</em>
+        <select class="form-control" formControlName="level">
+          <option value="">select level...</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="abstract">Abstract:</label>
+        <em *ngIf="sessionForm.controls.abstract.errors?.required  && sessionForm.controls.abstract.touched">Required</em>
+        <em *ngIf="sessionForm.controls.abstract.errors?.maxLength  && sessionForm.controls.abstract.touched">Max length reached</em>
+        <em *ngIf="sessionForm.controls.abstract.errors?.restrictedWords  && sessionForm.controls.abstract.touched">Restricted words found:{{sessionForm.controls.abstract.errors?.restrictedWords}} </em>
+        <textarea id="abstract" formControlName="abstract" class="form-control" placeholder="abstract..."></textarea>
+      </div>
+      <button type="submit"  class="btn btn-primary" [disabled]="sessionForm.invalid">Save</button>
+      <button type="button" class="btn btn-default" (click)="OnCancel()">Cancel</button>
+    </form>
+  </div>

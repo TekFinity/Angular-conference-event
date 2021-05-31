@@ -1,0 +1,18 @@
+<div class="row" *ngFor="let item of visibleSession">
+    <div class="col-md-10">
+        <collapse-session>
+            <div collapse-title >
+                {{item.name}} <i *ngIf="item.voters.length>3" class="fa fa-fire " style="color: red;"></i>
+                 
+            </div>
+            <div collapse-body>
+                <h6>{{item.presenter}}
+                </h6>
+                <span>Duration:{{item.duration}} </span>
+                <span>Level:{{item.level}}</span>
+                <p>{{item.abstract}}</p>
+            </div>
+          
+        </collapse-session>
+    </div>
+</div>

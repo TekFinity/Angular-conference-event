@@ -18,32 +18,32 @@ import { Router } from '@angular/router';
     .error ::-moz-placeholder{color:#999;}
     .error :-moz-placeholder{color:#999;}
     .error :ms-input-placeholder{color:#999}
-   
+
   `]
 })
 
 export class UserProfileComponent implements OnInit{
   profileForm: FormGroup;
   constructor(private auth: AuthService, private router: Router){}
-  ngOnInit(){
+  ngOnInit(): void{
     this.profileForm = new FormGroup({
-      firstName: new FormControl(this.auth.currentUser.firstName, Validators.required),
-      lastName: new FormControl(this.auth.currentUser.lastName, Validators.required)
+      firstName: new FormControl(this.auth.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
+      lastName: new FormControl(this.auth.currentUser.lastName, [Validators.required, Validators.pattern('[a-zA-Z].*')])
     });
   }
-  onSubmit(){
-    if(this.profileForm.valid){
-    this.auth.UpdateDetails(this.profileForm.controls['firstName'].value, this.profileForm.controls['lastName'].value);
+  onSubmit(): void {
+    if (this.profileForm.valid){
+    this.auth.UpdateDetails(this.profileForm.controls.firstName.value, this.profileForm.controls.lastName.value);
     this.router.navigate(['/events']);
   }
   }
-  cancel(){
+  cancel(): void {
     this.router.navigate(['/events']);
   }
-  ValidateFirst(){
-    return (this.profileForm.controls['firstName'].valid || this.profileForm.controls['firstName'].touched)
+  ValidateFirst(): boolean{
+    return (this.profileForm.controls.firstName.valid);
   }
-  ValidateLast(){
-    return (this.profileForm.controls['lastName'].valid || this.profileForm.controls['lastName'].touched)
+  ValidateLast(): boolean{
+    return (this.profileForm.controls.lastName.valid);
   }
 }

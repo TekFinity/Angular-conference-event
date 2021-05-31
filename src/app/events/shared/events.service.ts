@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import {IEvent} from './event.model'
+import {IEvent} from './event.model';
 @Injectable()
 export class EventService{
 
@@ -11,6 +11,15 @@ export class EventService{
     }
     getEventById(id: number): IEvent{
       return EVENTS.find(val => val.id === id);
+    }
+    saveEvent(newEvent): void{
+      newEvent.id = 99;
+      newEvent.sessions = [];
+      EVENTS.push(newEvent);
+    }
+    UpdateEvent(event): void{
+      const index = EVENTS.findIndex(i => i.id === event.id);
+      EVENTS[index] = event;
     }
 }
 const EVENTS: IEvent[] = [
@@ -121,7 +130,7 @@ const EVENTS: IEvent[] = [
           level: 'Intermediate',
           abstract: `In this workshop, David East will show you how to use Angular with the new
           ultra-real-time 5D Firebase back end, hosting platform, and wine recommendation engine.`,
-          voters: ['bradgreen', 'igorminar', 'johnpapa']
+          voters: ['bradgreen', 'igorminar', 'johnpapa','johnpapa']
         },
         {
           id: 3,

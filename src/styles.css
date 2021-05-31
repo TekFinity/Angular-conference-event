@@ -1,36 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-  background: #fc00ff;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #00dbde, #fc00ff);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #00dbde, #fc00ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+.container {
+  padding-top: 10px;
 }
-  
-  .container {
-    padding-top: 10px;
-  }
-  
-  .pointable {
-    cursor: pointer;
-  }
-  
-  button {
-    color: #555;
-  }
-  
-  [hidden] {
-    display: none !important;
-  }
-  
-  .toast-success {
-    background-color: #51a351;
-  }
-  .toast-error {
-    background-color: #bd362f;
-  }
-  .toast-info {
-    background-color: #2f96b4;
-  }
-  .toast-warning {
-    background-color: #f89406;
-  }
+
+.pointable {
+  cursor: pointer;
+}
+
+button {
+  color: #555;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.toast-success {
+  background-color: #51a351;
+}
+.toast-error {
+  background-color: #bd362f;
+}
+.toast-info {
+  background-color: #2f96b4;
+}
+.toast-warning {
+  background-color: #f89406;
+}
