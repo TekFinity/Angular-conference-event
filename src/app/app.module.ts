@@ -6,6 +6,7 @@ import {EventThumbnailComponent} from './events/event.thumbnail.component';
 import {NavBarComponent} from './nav/nav-bar.component';
 import  {EventService} from './events/shared/events.service';
 import {TOASTR_TOKEN} from './common/toastr.service';
+import {JQ_TOKEN} from './common/jquery.service';
 import {EventDetailsComponent} from './events/event-details/event-details.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
@@ -17,9 +18,12 @@ import {AuthService} from './user/auth.service';
 import {CreateSessionComponent} from './events/session/create-session.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SessionListComponent} from './events/session/session-list.component';
-import {CollapseSessionComponent} from './common/collapse-session.component'
+import {CollapseSessionComponent} from './common/collapse-session.component';
+import {SimpleModalComponent} from './common/simple-modal.component';
+import {ModalTriggerDirective} from './common/modal-trigger.directive';
 
 declare let toastr;
+const jQuery = window['$'];
 @NgModule({
   declarations: [
     EventsAppComponent,
@@ -31,7 +35,9 @@ declare let toastr;
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    CollapseSessionComponent
+    CollapseSessionComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,8 @@ declare let toastr;
   ],
   providers: [EventService, EventRouteActivatorService, ResolverRouteService, AuthService,
   {provide: 'DeactivateRoute', useValue: CheckDirtyState},
-{provide:TOASTR_TOKEN, useValue: toastr}],
+{provide: TOASTR_TOKEN, useValue: toastr},
+{provide: JQ_TOKEN, useValue: jQuery}],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule { }

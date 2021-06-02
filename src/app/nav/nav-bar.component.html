@@ -31,13 +31,22 @@
           </li>
         </ul>
       </div>
-      <form class="navbar-form navbar-right">
+      <form class="navbar-form navbar-right" (ngSubmit)="OnSearch(searchTerm)">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" name ="searchTerm" [(ngModel)] = "searchTerm" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" modal-trigger = "simple-modal">Submit</button>
       </form>
    
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<simple-modal title="Matching Sessions" modalID="simple-modal">
+  <div class="list-group">
+    <li class="list-item" *ngFor = "let session of foundSessions"><a  [routerLink]="['/events',session.eventID]">
+    {{session.name}}</a> 
+     
+    </li>
+  </div>
+</simple-modal>
