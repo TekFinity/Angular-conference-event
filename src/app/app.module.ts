@@ -21,6 +21,8 @@ import {SessionListComponent} from './events/session/session-list.component';
 import {CollapseSessionComponent} from './common/collapse-session.component';
 import {SimpleModalComponent} from './common/simple-modal.component';
 import {ModalTriggerDirective} from './common/modal-trigger.directive';
+import {VoterComponent} from './events/session/voter.component';
+import {VoterService} from './events/shared/voter.service';
 
 declare let toastr;
 const jQuery = window['$'];
@@ -37,14 +39,15 @@ const jQuery = window['$'];
     SessionListComponent,
     CollapseSessionComponent,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    VoterComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule, ReactiveFormsModule
   ],
-  providers: [EventService, EventRouteActivatorService, ResolverRouteService, AuthService,
+  providers: [EventService, EventRouteActivatorService, ResolverRouteService, AuthService, VoterService,
   {provide: 'DeactivateRoute', useValue: CheckDirtyState},
 {provide: TOASTR_TOKEN, useValue: toastr},
 {provide: JQ_TOKEN, useValue: jQuery}],

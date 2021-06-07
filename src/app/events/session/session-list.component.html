@@ -1,4 +1,9 @@
 <div class="row" *ngFor="let item of visibleSession">
+    <div class="col-md-1" *ngIf ="auth.isAuthenticated()">
+        <upvote (vote)="ToggleVote(item)" [count]="item.voters.length" [voted]="userHasVoted(item)">
+
+        </upvote>
+    </div>
     <div class="col-md-10">
         <collapse-session>
             <div collapse-title >
