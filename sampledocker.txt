@@ -1,0 +1,13 @@
+FROM node:14.17.6 as build
+LABEL author = "Asmi"
+WORKDIR /app
+COPY package.json package.json
+RUN npm install
+COPY . .
+RUN npm run build -- --prod
+
+FROM nginx:1.17.1-alpine
+WORKDIR /app
+COPY --from=build /app/dist/pluralsightAngularCourse /usr/share/nginx/html
+# Expose port 80
+EXPOSE 80

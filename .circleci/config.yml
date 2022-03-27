@@ -14,6 +14,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      # - setup_docker_remote
       - restore_cache:
           # See the configuration reference documentation for more details on using restore_cache and save_cache steps
           # https://circleci.com/docs/2.0/configuration-reference/?section=reference#save_cache
@@ -32,6 +33,17 @@ jobs:
       # - run:
       #     name: Run Tests
       #     command: npm run test --single-run
+      #for cd using docker 
+      # - run:
+      #     command: |
+      #       docker build -t sicotin.azurecr.io/hello:1.0 .
+      # - run:
+      #     command: |
+      #       docker login --username $DOCKER_USER --password $DOCKER_PASS sicotin.azurecr.io
+      # - run:
+      #     command: |
+      #       docker push sicotin.azurecr.io/hello:1.0
+      
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
