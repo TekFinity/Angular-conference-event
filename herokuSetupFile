@@ -1,0 +1,54 @@
+1.Install express and create server.js
+2.Update package.json to change scripts and engines
+"scripts": {
+    "ng": "ng",
+    "start": "node server.js",
+    ...
+},
+"engines": {
+    "node": "14.17.6",
+    "npm": "6.14.15"
+  }
+
+  3.Create Dockerfile
+  FROM node:12.7-alpine AS build
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /usr/src/app/dist/pluralsightAngularCourse /usr/share/nginx/html
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
+
+
+4. Create nginx.conf file
+
+server{
+    listen $PORT;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+    }
+}
+5.Setup Heroku and dockerize and deploy
+npm install -g heroku
+heroku -v
+heroku login
+heroku container:login
+heroku create
+Creating app... done, ⬢ stormy-tundra-87026
+https://stormy-tundra-87026.herokuapp.com/ | https://git.heroku.com/stormy-tundra-87026.git
+
+build docker image
+docker build -t registry.heroku.com/stormy-tundra-87026/web .
+push image to registry
+docker push registry.heroku.com/stormy-tundra-87026/web
+
+relase app-
+heroku container:release web -a stormy-tundra-87026
+
